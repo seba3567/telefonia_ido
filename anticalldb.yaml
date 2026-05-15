@@ -1,0 +1,45 @@
+database:
+  name: "anticall_db"
+  version: 2
+  metadata:
+    source_file: "tabla_numeracion_ido_idd_09-03-2026.xlsx"
+    last_update: "2026-03-09"
+    agency: "SUBTEL Chile"
+    repository: "https://github.com/seba3567/telefonia_ido"
+
+  collections:
+    fijos:
+      service_type: "LOCAL"
+      raw_url: "https://raw.githubusercontent.com/seba3567/telefonia_ido/refs/heads/main/fijos.json"
+      description: "Bloques de numeración para telefonía fija nacional."
+      fields:
+        - "bloque"
+        - "empresa"
+        - "ido_idd"
+
+    moviles:
+      service_type: "MÓVIL"
+      raw_url: "https://raw.githubusercontent.com/seba3567/telefonia_ido/refs/heads/main/moviles.json"
+      description: "Bloques de numeración para telefonía móvil (celulares)."
+      fields:
+        - "bloque"
+        - "empresa"
+        - "ido_idd"
+
+    voip:
+      service_type: "VOZ SOBRE INTERNET"
+      raw_url: "https://raw.githubusercontent.com/seba3567/telefonia_ido/refs/heads/main/voip.json"
+      description: "Bloques de numeración para servicios de Voz sobre IP y numeración virtual."
+      fields:
+        - "bloque"
+        - "empresa"
+        - "ido_idd"
+
+sync_config:
+  strategy: "remote_first"
+  auto_update: true
+  cache_locally: true
+  check_interval_hours: 24
+  headers:
+    Accept: "application/json"
+    User-Agent: "AntiCall-Chile-v19"
